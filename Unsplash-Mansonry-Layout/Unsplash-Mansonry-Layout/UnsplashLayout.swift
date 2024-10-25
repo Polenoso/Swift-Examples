@@ -22,12 +22,10 @@ struct UnsplashLayout: Layout {
     }
     
     func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout Void) -> CGSize {
-        print("Size that fits \(proposal.replacingUnspecifiedDimensions())")
         let size = proposal.replacingUnspecifiedDimensions()
         let viewFrames = frames(for: subviews, in: size)
         let width = axis == .vertical ?  size.width : (viewFrames.max { $0.maxX < $1.maxX } ?? .zero).maxX
         let height = axis == .horizontal ? size.height : (viewFrames.max { $0.maxY < $1.maxY } ?? .zero).maxY
-        print("Size width: \(width), height: \(height)")
         return CGSize(width: width, height: height)
     }
     
